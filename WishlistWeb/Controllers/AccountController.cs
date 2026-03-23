@@ -30,14 +30,14 @@ public class AccountController : Controller
         var user = await _users.FindByEmailAsync(vm.Email);
         if (user is null)
         {
-            ModelState.AddModelError("", "Невірний email або пароль");
+            ModelState.AddModelError("", "faild email");
             return View(vm);
         }
 
         var result = await _signIn.PasswordSignInAsync(user, vm.Password, isPersistent: true, lockoutOnFailure: false);
         if (!result.Succeeded)
         {
-            ModelState.AddModelError("", "Невірний email або пароль");
+            ModelState.AddModelError("", "faild email");
             return View(vm);
         }
 
